@@ -1,0 +1,528 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CAPTAIN GLOBAL - Digital Services</title>
+    <script src="https://cdn.tailwindcss.com/3.4.16"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class', 
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#3b82f6',
+                        secondary: '#10b981'
+                    },
+                    borderRadius: {
+                        'none': '0px',
+                        'sm': '4px',
+                        DEFAULT: '8px',
+                        'md': '12px',
+                        'lg': '16px',
+                        'xl': '20px',
+                        '2xl': '24px',
+                        '3xl': '32px',
+                        'full': '9999px',
+                        'button': '8px'
+                    }
+                }
+            }
+        }
+    </script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lobster&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/4.6.0/remixicon.min.css">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            padding-bottom: 60px; 
+        }
+        .service-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px -5px rgba(59, 130, 246, 0.1);
+        }
+        /* Ensure modals with backdrop are centered */
+        .modal-backdrop {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+    </style>
+</head>
+<body class="bg-gray-50 dark:bg-gray-900 dark:text-gray-200 transition-colors duration-300">
+    <nav class="fixed top-0 w-full bg-white dark:bg-gray-800 shadow-sm dark:border-b dark:border-gray-700 z-50">
+        <div class="px-4 py-3 flex items-center justify-between">
+            <div class="flex items-center">
+                <span class="text-2xl font-['Lobster'] text-primary">CAPTAIN GLOBAL</span>
+            </div>
+            <div class="flex items-center space-x-2">
+                <button id="theme-toggle-btn" class="w-8 h-8 flex items-center justify-center text-gray-500 dark:text-gray-400 rounded-full hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors">
+                    <i id="theme-toggle-icon" class="ri-sun-line ri-lg"></i>
+                </button>
+                <button id="search-btn" class="w-8 h-8 flex items-center justify-center text-gray-500 dark:text-gray-400 rounded-full hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors">
+                    <i class="ri-search-line ri-lg"></i>
+                </button>
+            </div>
+        </div>
+        <div id="search-bar" class="hidden px-4 py-2 bg-white dark:bg-gray-800 border-t dark:border-gray-700">
+            <div class="relative">
+                <input type="text" placeholder="Search services..." class="w-full py-2 pl-10 pr-4 bg-gray-100 dark:bg-gray-700 dark:text-gray-200 dark:placeholder-gray-400 rounded-button border-none focus:ring-2 focus:ring-primary text-sm">
+                <div class="absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4 flex items-center justify-center text-gray-400 dark:text-gray-300">
+                    <i class="ri-search-line"></i>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <section class="pt-20 px-4 pb-8">
+        <div class="relative rounded-lg overflow-hidden h-48 mb-6">
+            <img src="/hero-banner.png" alt="Digital Services" class="w-full h-full object-cover">
+            <div class="absolute inset-0 bg-gradient-to-r from-primary/80 to-primary/50 flex flex-col justify-center px-6">
+                <h1 class="text-2xl font-bold text-white mb-2">Digital Solutions for Everyone</h1>
+                <p class="text-white text-sm mb-4">Comprehensive digital services to meet all your online needs</p>
+                <button id="browse-services-hero" class="bg-white hover:bg-gray-100 dark:bg-gray-100 dark:hover:bg-gray-200 text-primary font-medium py-2 px-4 rounded-button w-fit text-sm cursor-pointer transition-colors">
+                    Browse Services
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <section class="px-4 py-4" id="services-section">
+        <h2 class="text-xl font-semibold mb-4 dark:text-gray-100">Our Services</h2>
+        <div class="grid grid-cols-2 gap-4">
+            <div class="service-card bg-white dark:bg-gray-800 p-4 rounded-lg shadow-sm border border-gray-100 dark:border-gray-700 transition-all duration-300">
+                <div class="w-12 h-12 mb-3 flex items-center justify-center bg-blue-100 dark:bg-blue-500 dark:bg-opacity-20 rounded-full text-3xl">
+                    <span>🌍</span>
+                </div>
+                <h3 class="text-sm font-medium mb-1 dark:text-gray-50">International Bank Accounts</h3>
+                <p class="text-xs text-gray-500 dark:text-gray-400 mb-3">Open secure international bank accounts for global individuals & businesses. Access multiple currencies, seamless transfers, and robust financial tools.</p>
+                <button class="inquire-now bg-primary text-white text-xs py-1.5 px-3 rounded-button cursor-pointer hover:bg-primary/90 dark:hover:bg-primary/80 transition-colors" data-id="1" data-name="International Bank Accounts">
+                    Inquire Now
+                </button>
+            </div>
+
+            <div class="service-card bg-white dark:bg-gray-800 p-4 rounded-lg shadow-sm border border-gray-100 dark:border-gray-700 transition-all duration-300">
+                <div class="w-12 h-12 mb-3 flex items-center justify-center bg-green-100 dark:bg-green-500 dark:bg-opacity-20 rounded-full text-3xl">
+                    <span>🎁</span>
+                </div>
+                <h3 class="text-sm font-medium mb-1 dark:text-gray-50">Gift Card Trading</h3>
+                <p class="text-xs text-gray-500 dark:text-gray-400 mb-3">Easily buy, sell, or trade various gift cards (Apple, Amazon, etc.). Get top rates with secure and fast transactions.</p>
+                <button class="inquire-now bg-primary text-white text-xs py-1.5 px-3 rounded-button cursor-pointer hover:bg-primary/90 dark:hover:bg-primary/80 transition-colors" data-id="2" data-name="Gift Card Trading">
+                    Inquire Now
+                </button>
+            </div>
+
+            <div class="service-card bg-white dark:bg-gray-800 p-4 rounded-lg shadow-sm border border-gray-100 dark:border-gray-700 transition-all duration-300">
+                <div class="w-12 h-12 mb-3 flex items-center justify-center bg-purple-100 dark:bg-purple-500 dark:bg-opacity-20 rounded-full text-3xl">
+                     <span>💳</span>
+                </div>
+                <h3 class="text-sm font-medium mb-1 dark:text-gray-50">Virtual Credit Cards</h3>
+                <p class="text-xs text-gray-500 dark:text-gray-400 mb-3">Secure virtual credit cards for online subscriptions (OnlyFans, Netflix, etc.). Control your digital spending with privacy.</p>
+                <button class="inquire-now bg-primary text-white text-xs py-1.5 px-3 rounded-button cursor-pointer hover:bg-primary/90 dark:hover:bg-primary/80 transition-colors" data-id="3" data-name="Virtual Credit Cards">
+                    Inquire Now
+                </button>
+            </div>
+
+            <div class="service-card bg-white dark:bg-gray-800 p-4 rounded-lg shadow-sm border border-gray-100 dark:border-gray-700 transition-all duration-300">
+                <div class="w-12 h-12 mb-3 flex items-center justify-center bg-yellow-100 dark:bg-yellow-500 dark:bg-opacity-20 rounded-full text-3xl">
+                    <span>🎨</span>
+                </div>
+                <h3 class="text-sm font-medium mb-1 dark:text-gray-50">Graphics Design</h3>
+                <p class="text-xs text-gray-500 dark:text-gray-400 mb-3">Professional graphics design: logos, branding, social media visuals, and website graphics. High-quality, impactful designs.</p>
+                <button class="inquire-now bg-primary text-white text-xs py-1.5 px-3 rounded-button cursor-pointer hover:bg-primary/90 dark:hover:bg-primary/80 transition-colors" data-id="4" data-name="Graphics Design">
+                    Inquire Now
+                </button>
+            </div>
+
+            <div class="service-card bg-white dark:bg-gray-800 p-4 rounded-lg shadow-sm border border-gray-100 dark:border-gray-700 transition-all duration-300">
+                <div class="w-12 h-12 mb-3 flex items-center justify-center bg-red-100 dark:bg-red-500 dark:bg-opacity-20 rounded-full text-3xl">
+                   <span>📱</span>
+                </div>
+                <h3 class="text-sm font-medium mb-1 dark:text-gray-50">Social Media Accounts</h3>
+                <p class="text-xs text-gray-500 dark:text-gray-400 mb-3">Access new or established social media accounts on all major platforms for marketing, branding, or community building.</p>
+                <button class="inquire-now bg-primary text-white text-xs py-1.5 px-3 rounded-button cursor-pointer hover:bg-primary/90 dark:hover:bg-primary/80 transition-colors" data-id="5" data-name="Social Media Accounts">
+                    Inquire Now
+                </button>
+            </div>
+
+            <div class="service-card bg-white dark:bg-gray-800 p-4 rounded-lg shadow-sm border border-gray-100 dark:border-gray-700 transition-all duration-300">
+                <div class="w-12 h-12 mb-3 flex items-center justify-center bg-indigo-100 dark:bg-indigo-500 dark:bg-opacity-20 rounded-full text-3xl">
+                    <span>🛡️</span>
+                </div>
+                <h3 class="text-sm font-medium mb-1 dark:text-gray-50">VPN Account Access</h3>
+                <p class="text-xs text-gray-500 dark:text-gray-400 mb-3">Premium VPN access for all devices. Ensure online privacy, bypass geo-restrictions, and enjoy fast, encrypted browsing.</p>
+                <button class="inquire-now bg-primary text-white text-xs py-1.5 px-3 rounded-button cursor-pointer hover:bg-primary/90 dark:hover:bg-primary/80 transition-colors" data-id="6" data-name="VPN Account Access">
+                    Inquire Now
+                </button>
+            </div>
+
+            <div class="service-card bg-white dark:bg-gray-800 p-4 rounded-lg shadow-sm border border-gray-100 dark:border-gray-700 transition-all duration-300">
+                <div class="w-12 h-12 mb-3 flex items-center justify-center bg-teal-100 dark:bg-teal-500 dark:bg-opacity-20 rounded-full text-3xl">
+                    <span>💻</span>
+                </div>
+                <h3 class="text-sm font-medium mb-1 dark:text-gray-50">Basic Website Creation</h3>
+                <p class="text-xs text-gray-500 dark:text-gray-400 mb-3">Launch your online presence with functional, responsive, and professional websites for small businesses or personal projects.</p>
+                <button class="inquire-now bg-primary text-white text-xs py-1.5 px-3 rounded-button cursor-pointer hover:bg-primary/90 dark:hover:bg-primary/80 transition-colors" data-id="7" data-name="Basic Website Creation">
+                    Inquire Now
+                </button>
+            </div>
+
+            <div class="service-card bg-white dark:bg-gray-800 p-4 rounded-lg shadow-sm border border-gray-100 dark:border-gray-700 transition-all duration-300">
+                <div class="w-12 h-12 mb-3 flex items-center justify-center bg-orange-100 dark:bg-orange-500 dark:bg-opacity-20 rounded-full text-3xl">
+                    <span>📈</span>
+                </div>
+                <h3 class="text-sm font-medium mb-1 dark:text-gray-50">Social Media Boost</h3>
+                <p class="text-xs text-gray-500 dark:text-gray-400 mb-3">Boost your social media presence: increase likes, views, followers, and comments safely and organically across platforms.</p>
+                <button class="inquire-now bg-primary text-white text-xs py-1.5 px-3 rounded-button cursor-pointer hover:bg-primary/90 dark:hover:bg-primary/80 transition-colors" data-id="8" data-name="Social Media Boost">
+                    Inquire Now
+                </button>
+            </div>
+
+            <div class="service-card bg-white dark:bg-gray-800 p-4 rounded-lg shadow-sm border border-gray-100 dark:border-gray-700 transition-all duration-300">
+                <div class="w-12 h-12 mb-3 flex items-center justify-center bg-pink-100 dark:bg-pink-500 dark:bg-opacity-20 rounded-full text-3xl">
+                    <span>⚙️</span>
+                </div>
+                <h3 class="text-sm font-medium mb-1 dark:text-gray-50">Custom Website Solutions</h3>
+                <p class="text-xs text-gray-500 dark:text-gray-400 mb-3">Custom websites: celebrity fan sites, e-commerce, specialized bank sites, and more, tailored to your specific needs.</p>
+                <button class="inquire-now bg-primary text-white text-xs py-1.5 px-3 rounded-button cursor-pointer hover:bg-primary/90 dark:hover:bg-primary/80 transition-colors" data-id="9" data-name="Custom Website Solutions">
+                    Inquire Now
+                </button>
+            </div>
+
+            <div class="service-card bg-white dark:bg-gray-800 p-4 rounded-lg shadow-sm border border-gray-100 dark:border-gray-700 transition-all duration-300">
+                <div class="w-12 h-12 mb-3 flex items-center justify-center bg-cyan-100 dark:bg-cyan-500 dark:bg-opacity-20 rounded-full text-3xl">
+                    <span>🎓</span>
+                </div>
+                <h3 class="text-sm font-medium mb-1 dark:text-gray-50">Website Creation Training</h3>
+                <p class="text-xs text-gray-500 dark:text-gray-400 mb-3">Learn website creation and editing with comprehensive training. Gain practical skills to build and manage your own sites.</p>
+                <button class="inquire-now bg-primary text-white text-xs py-1.5 px-3 rounded-button cursor-pointer hover:bg-primary/90 dark:hover:bg-primary/80 transition-colors" data-id="10" data-name="Website Creation Training">
+                    Inquire Now
+                </button>
+            </div>
+
+            <div class="service-card bg-white dark:bg-gray-800 p-4 rounded-lg shadow-sm border border-gray-100 dark:border-gray-700 transition-all duration-300">
+                <div class="w-12 h-12 mb-3 flex items-center justify-center bg-lime-100 dark:bg-lime-500 dark:bg-opacity-20 rounded-full text-3xl">
+                    <span>📱</span>
+                </div>
+                <h3 class="text-sm font-medium mb-1 dark:text-gray-50">Verification Numbers & eSIMs</h3>
+                <p class="text-xs text-gray-500 dark:text-gray-400 mb-3">Get phone numbers from any country for all types of online verifications. We also provide eSIM services for global connectivity.</p>
+                <button class="inquire-now bg-primary text-white text-xs py-1.5 px-3 rounded-button cursor-pointer hover:bg-primary/90 dark:hover:bg-primary/80 transition-colors" data-id="11" data-name="Verification Numbers & eSIMs">
+                    Inquire Now
+                </button>
+            </div>
+
+            <div class="service-card bg-white dark:bg-gray-800 p-4 rounded-lg shadow-sm border border-gray-100 dark:border-gray-700 transition-all duration-300">
+                <div class="w-12 h-12 mb-3 flex items-center justify-center bg-rose-100 dark:bg-rose-500 dark:bg-opacity-20 rounded-full text-3xl">
+                    <span>✍️</span>
+                </div>
+                <h3 class="text-sm font-medium mb-1 dark:text-gray-50">Creative Writing Services</h3>
+                <p class="text-xs text-gray-500 dark:text-gray-400 mb-3">Professional writing services including short scripts, novels, engaging story books for kids, humorous skits, and more. Bring your ideas to life!</p>
+                <button class="inquire-now bg-primary text-white text-xs py-1.5 px-3 rounded-button cursor-pointer hover:bg-primary/90 dark:hover:bg-primary/80 transition-colors" data-id="12" data-name="Creative Writing Services">
+                    Inquire Now
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <section class="px-4 py-6 mt-4 bg-white dark:bg-gray-800" id="contact-section">
+        <h2 class="text-xl font-semibold mb-4 dark:text-gray-100">Contact Us</h2>
+        <p class="text-sm text-gray-600 dark:text-gray-300 mb-5">Get in touch with us for any inquiries or to discuss your requirements.</p>
+        
+        <div class="grid grid-cols-1 gap-4">
+            <a href="mailto:CaptainGlobal.customercare@gmail.com" class="flex items-center justify-between bg-gray-50 dark:bg-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 p-4 rounded-lg border border-gray-100 dark:border-gray-600 cursor-pointer transition-colors">
+                <div class="flex items-center">
+                    <div class="w-10 h-10 flex items-center justify-center bg-primary/10 dark:bg-primary/20 rounded-full mr-3">
+                        <i class="ri-mail-line ri-lg text-primary"></i>
+                    </div>
+                    <div>
+                        <h3 class="text-sm font-medium dark:text-gray-50">Email Us</h3>
+                        <p class="text-xs text-gray-500 dark:text-gray-400">CaptainGlobal.customercare@gmail.com</p>
+                    </div>
+                </div>
+                <i class="ri-arrow-right-line text-gray-400 dark:text-gray-500"></i>
+            </a>
+            
+            <a href="https://wa.me/2349059746697" target="_blank" class="flex items-center justify-between bg-gray-50 dark:bg-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 p-4 rounded-lg border border-gray-100 dark:border-gray-600 cursor-pointer transition-colors">
+                <div class="flex items-center">
+                    <div class="w-10 h-10 flex items-center justify-center bg-green-100 dark:bg-green-500 dark:bg-opacity-20 rounded-full mr-3">
+                        <i class="ri-whatsapp-line ri-lg text-green-500"></i>
+                    </div>
+                    <div>
+                        <h3 class="text-sm font-medium dark:text-gray-50">WhatsApp</h3>
+                        <p class="text-xs text-gray-500 dark:text-gray-400">+234 905 974 6697</p>
+                    </div>
+                </div>
+                <i class="ri-arrow-right-line text-gray-400 dark:text-gray-500"></i>
+            </a>
+        </div>
+    </section>
+
+    <div id="welcome-modal" class="fixed inset-0 bg-black/50 z-[70] hidden modal-backdrop p-4">
+        <div class="bg-white dark:bg-gray-800 w-full max-w-md rounded-lg shadow-xl relative">
+            <button id="close-welcome-modal" class="absolute top-3 right-3 w-8 h-8 flex items-center justify-center text-gray-500 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-full transition-colors z-10">
+                <i class="ri-close-line ri-lg"></i>
+            </button>
+            <div class="p-6 text-center">
+                <div class="w-16 h-16 mx-auto bg-primary/10 dark:bg-primary/20 rounded-full flex items-center justify-center mb-4 text-3xl">
+                     <span>🎉</span>
+                </div>
+                <h3 class="text-xl font-semibold mb-2 dark:text-gray-50">Welcome to CAPTAIN GLOBAL!</h3>
+                <p class="text-gray-600 dark:text-gray-300 text-sm mb-6">
+                    We're thrilled to have you. Explore our digital services designed to meet your online needs.
+                </p>
+                <button id="explore-services-welcome" class="bg-primary text-white py-2.5 px-6 rounded-button font-medium text-sm cursor-pointer hover:bg-primary/90 dark:hover:bg-primary/80 transition-colors w-full sm:w-auto">
+                    Explore Services
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <div id="success-modal" class="fixed inset-0 bg-black/50 z-[60] hidden modal-backdrop">
+        <div class="bg-white dark:bg-gray-700 w-full max-w-sm mx-4 rounded-lg overflow-hidden relative">
+             <button id="close-success-x" class="absolute top-3 right-3 w-8 h-8 flex items-center justify-center text-gray-500 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-full transition-colors z-10">
+                <i class="ri-close-line ri-lg"></i>
+            </button>
+            <div class="p-6 pt-10 text-center"> 
+                <div class="w-16 h-16 mx-auto bg-green-100 dark:bg-green-500 dark:bg-opacity-20 rounded-full flex items-center justify-center mb-4">
+                    <i class="ri-mail-send-line ri-2x text-green-500"></i>
+                </div>
+                <h3 id="success-modal-title" class="text-lg font-medium mb-2 dark:text-gray-50">Inquiry Ready!</h3>
+                <p id="success-modal-message" class="text-gray-600 dark:text-gray-300 text-sm mb-4">Your inquiry is ready. Please check your email client to send it.</p>
+                <button id="close-success" class="bg-primary text-white py-2 px-6 rounded-button text-sm cursor-pointer hover:bg-primary/90 dark:hover:bg-primary/80 transition-colors">
+                    Done
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <nav class="fixed bottom-0 w-full bg-white dark:bg-gray-800 border-t border-gray-200 dark:border-gray-700 z-40">
+        <div class="grid grid-cols-3 h-14">
+            <a href="#" class="tab-item flex flex-col items-center justify-center text-primary"> 
+                <div class="w-6 h-6 flex items-center justify-center">
+                    <i class="ri-home-line"></i>
+                </div>
+                <span class="text-xs mt-0.5">Home</span>
+            </a>
+            <a href="#services-section" class="tab-item flex flex-col items-center justify-center text-gray-500 dark:text-gray-400 hover:text-primary dark:hover:text-primary/80 transition-colors">
+                <div class="w-6 h-6 flex items-center justify-center">
+                    <i class="ri-apps-line"></i>
+                </div>
+                <span class="text-xs mt-0.5">Services</span>
+            </a>
+            <a href="#contact-section" class="tab-item flex flex-col items-center justify-center text-gray-500 dark:text-gray-400 hover:text-primary dark:hover:text-primary/80 transition-colors">
+                <div class="w-6 h-6 flex items-center justify-center">
+                    <i class="ri-customer-service-line"></i>
+                </div>
+                <span class="text-xs mt-0.5">Contact</span>
+            </a>
+        </div>
+    </nav>
+
+    <script id="ui-interactions">
+        document.addEventListener('DOMContentLoaded', function() {
+            const themeToggleBtn = document.getElementById('theme-toggle-btn');
+            const themeToggleIcon = document.getElementById('theme-toggle-icon');
+            const htmlElement = document.documentElement;
+
+            function applyTheme(theme) {
+                if (theme === 'dark') {
+                    htmlElement.classList.add('dark');
+                    if (themeToggleIcon) themeToggleIcon.classList.replace('ri-sun-line', 'ri-moon-line');
+                    localStorage.setItem('theme', 'dark');
+                } else {
+                    htmlElement.classList.remove('dark');
+                    if (themeToggleIcon) themeToggleIcon.classList.replace('ri-moon-line', 'ri-sun-line');
+                    localStorage.setItem('theme', 'light');
+                }
+            }
+
+            const savedTheme = localStorage.getItem('theme');
+            const prefersDarkScheme = window.matchMedia('(prefers-color-scheme: dark)');
+
+            if (savedTheme) {
+                applyTheme(savedTheme);
+            } else if (prefersDarkScheme.matches) {
+                applyTheme('dark');
+            } else {
+                applyTheme('light'); 
+            }
+            
+            if (themeToggleBtn) {
+                themeToggleBtn.addEventListener('click', () => {
+                    if (htmlElement.classList.contains('dark')) {
+                        applyTheme('light');
+                    } else {
+                        applyTheme('dark');
+                    }
+                });
+            }
+
+            prefersDarkScheme.addEventListener('change', (e) => {
+                if (!localStorage.getItem('theme')) { 
+                    applyTheme(e.matches ? 'dark' : 'light');
+                }
+            });
+
+            const searchBtn = document.getElementById('search-btn');
+            const searchBar = document.getElementById('search-bar');
+            if (searchBtn) {
+                searchBtn.addEventListener('click', function() {
+                    searchBar.classList.toggle('hidden');
+                });
+            }
+
+            const browseServicesHeroBtn = document.getElementById('browse-services-hero');
+            if (browseServicesHeroBtn) {
+                browseServicesHeroBtn.addEventListener('click', () => {
+                    const servicesSection = document.getElementById('services-section');
+                    if (servicesSection) {
+                        servicesSection.scrollIntoView({ behavior: 'smooth' });
+                    }
+                });
+            }
+            
+            const tabItems = document.querySelectorAll('.tab-item');
+            const sections = [document.querySelector('body'), document.getElementById('services-section'), document.getElementById('contact-section')];
+
+            tabItems.forEach(tab => {
+                tab.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    const targetId = this.getAttribute('href');
+                    
+                    tabItems.forEach(item => {
+                        item.classList.remove('text-primary');
+                        item.classList.add('text-gray-500', 'dark:text-gray-400');
+                    });
+                    this.classList.add('text-primary');
+                    this.classList.remove('text-gray-500', 'dark:text-gray-400');
+
+                    if (targetId === "#") { 
+                        window.scrollTo({ top: 0, behavior: 'smooth' });
+                    } else {
+                        const targetElement = document.querySelector(targetId);
+                        if (targetElement) {
+                            targetElement.scrollIntoView({ behavior: 'smooth' });
+                        }
+                    }
+                });
+            });
+            
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        tabItems.forEach(tab => {
+                            tab.classList.remove('text-primary');
+                            tab.classList.add('text-gray-500', 'dark:text-gray-400');
+                            if (tab.getAttribute('href') === `#${entry.target.id}` || (entry.target.tagName === 'BODY' && tab.getAttribute('href') === '#')) {
+                                tab.classList.add('text-primary');
+                                tab.classList.remove('text-gray-500', 'dark:text-gray-400');
+                            }
+                        });
+                    }
+                });
+            }, { rootMargin: "-50% 0px -50% 0px", threshold: 0.1 }); 
+
+            if (sections[1]) observer.observe(sections[1]); 
+            if (sections[2]) observer.observe(sections[2]); 
+
+            window.addEventListener('scroll', () => {
+                let currentActiveSet = false;
+                if (window.scrollY < window.innerHeight / 3) { 
+                     tabItems.forEach(tab => {
+                        if (tab.getAttribute('href') === '#') {
+                            tab.classList.add('text-primary');
+                            tab.classList.remove('text-gray-500', 'dark:text-gray-400');
+                        } else {
+                            tab.classList.remove('text-primary');
+                            tab.classList.add('text-gray-500', 'dark:text-gray-400');
+                        }
+                    });
+                    currentActiveSet = true;
+                }
+            });
+
+
+            const inquireNowButtons = document.querySelectorAll('.inquire-now');
+            const successModal = document.getElementById('success-modal');
+            const closeSuccessBtn = document.getElementById('close-success');
+            const closeSuccessXBtn = document.getElementById('close-success-x');
+            const successModalTitle = document.getElementById('success-modal-title');
+            const successModalMessage = document.getElementById('success-modal-message');
+
+            const companyEmail = 'CaptainGlobal.customercare@gmail.com';
+
+            inquireNowButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    const serviceId = this.getAttribute('data-id');
+                    const serviceName = this.getAttribute('data-name');
+                    
+                    const subject = `Service Inquiry: ${serviceName}`;
+                    const body = `Hello CAPTAIN GLOBAL,\n\nI am interested in your service: "${serviceName}" (Service ID: ${serviceId}).\n\nPlease provide me with more information regarding this service.\n\nThank you,\n[Your Name]`;
+                    
+                    const mailtoLink = `mailto:${companyEmail}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+                    
+                    window.location.href = mailtoLink;
+
+                    if (successModalTitle) successModalTitle.textContent = `Inquiry for: ${serviceName}`;
+                    if (successModalMessage) successModalMessage.textContent = `Your email client should now open with a pre-filled message about "${serviceName}". Please review and send it.`;
+                    if (successModal) {
+                        successModal.classList.remove('hidden');
+                        successModal.classList.add('flex'); // Ensure it's flex for modal-backdrop
+                    }
+                });
+            });
+
+            if (closeSuccessBtn) {
+                closeSuccessBtn.addEventListener('click', function() {
+                    if (successModal) {
+                        successModal.classList.add('hidden');
+                        successModal.classList.remove('flex');
+                    }
+                });
+            }
+            if (closeSuccessXBtn) {
+                closeSuccessXBtn.addEventListener('click', function() {
+                     if (successModal) {
+                        successModal.classList.add('hidden');
+                        successModal.classList.remove('flex');
+                    }
+                });
+            }
+
+            // Welcome Modal Logic
+            const welcomeModal = document.getElementById('welcome-modal');
+            const closeWelcomeModalBtn = document.getElementById('close-welcome-modal');
+            const exploreServicesWelcomeBtn = document.getElementById('explore-services-welcome');
+
+            if (welcomeModal) {
+                welcomeModal.classList.remove('hidden');
+                welcomeModal.classList.add('flex'); // Ensure it's flex for modal-backdrop
+            }
+
+            if (closeWelcomeModalBtn) {
+                closeWelcomeModalBtn.addEventListener('click', () => {
+                    if (welcomeModal) {
+                        welcomeModal.classList.add('hidden');
+                        welcomeModal.classList.remove('flex');
+                    }
+                });
+            }
+
+            if (exploreServicesWelcomeBtn) {
+                exploreServicesWelcomeBtn.addEventListener('click', () => {
+                    if (welcomeModal) {
+                        welcomeModal.classList.add('hidden');
+                        welcomeModal.classList.remove('flex');
+                    }
+                    const servicesSection = document.getElementById('services-section');
+                    if (servicesSection) {
+                        servicesSection.scrollIntoView({ behavior: 'smooth' });
+                    }
+                });
+            }
+        });
+    </script>
+</body>
+</html>
